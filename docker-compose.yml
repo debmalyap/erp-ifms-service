@@ -1,0 +1,53 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: spring_boot_tech
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - erp_three_tier
+    ports:
+      - "3307:3306"
+
+  spring:
+    build:
+      context: .
+    container_name: spring_app
+    ports:
+      - "4001:4000"
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_DB: spring_boot_tech
+    networks:
+      - erp_three_tier
+    depends_on:
+      - mysql
+      
+  react:
+    build:
+      context: /media/user1/New Volume6/Bank Details Portal/bank-details-portal
+    container_name: react_app
+    ports:
+      - "3000:3000"
+    networks:
+      - erp_three_tier
+    depends_on:
+      - spring
+    
+
+networks:
+  erp_three_tier:
+    driver: bridge
+
+volumes:
+  mysql-data:
+
