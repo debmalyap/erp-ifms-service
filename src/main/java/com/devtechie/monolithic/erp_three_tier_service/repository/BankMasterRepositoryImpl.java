@@ -92,7 +92,9 @@ public class BankMasterRepositoryImpl implements BankMasterRepository
 			list = (List<BankMaster>) namedParameterJdbcTemplate.query(sql, new BankGstMstMapper());
 			System.out.println(list);
 			return list;
-		} catch (Exception e) {
+		} catch (Exception e) 
+		{
+			log.info("Exception raised inside method fetchAllBankDetails");
 			return new ArrayList<BankMaster>();
 		}
 	}
