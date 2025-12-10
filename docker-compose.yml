@@ -34,7 +34,7 @@ services:
       
   react:
     build:
-      context: ./bank-details-portal
+      context: ../Bank Details Portal/bank-details-portal
     container_name: react_app
     ports:
       - "3000:3000"
