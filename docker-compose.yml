@@ -34,7 +34,7 @@ services:
       
   react:
     build:
-      context: ./erp-job-details-portal
+      context: ../erp-job-details-portal
     container_name: react_app
     ports:
       - "3000:3000"
