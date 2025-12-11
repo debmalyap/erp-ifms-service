@@ -11,6 +11,7 @@ services:
       MYSQL_PASSWORD: admin
     volumes:
       - mysql-data:/var/lib/mysql
+      - ./init-scripts:/docker-entrypoint-initdb.d
     networks:
       - erp_three_tier
     ports:
